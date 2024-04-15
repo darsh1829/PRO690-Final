@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: argo-demo-rollout
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: argo-demo
+  template:
+    metadata:
+      labels:
+        app: argo-demo
+    spec:
+      containers:
+      - name: argo-demo
+        image: 
+        ports:
+        - containerPort: 8080
+  strategy:
+    canary:
+      steps:
+      - setWeight: 20
+      - pause: {}
+      - setWeight: 40
+      - pause: {duration: 10s}
+      - setWeight: 60
+      - pause: {duration: 10s}
+      - setWeight: 80
+      - pause: {duration: 10s}
+  revisionHistoryLimit: 3
