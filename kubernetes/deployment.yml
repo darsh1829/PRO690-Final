@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: argo-demo
+  name: pro690
   labels:
     app: argo-demo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: argo-demo
+      app: pro690
   template:
     metadata:
       labels:
-        app: argo-demo
+        app: pro690
     spec:
       containers:
-        - name: argo-demo
-          image: 
+        - name: pro690
+          image: darshpadaria/pro690:v1.0
           ports:
             - containerPort: 8080
